@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% include 'messages.html' %}
+<div>   
+    <form method="post" action="{% url 'submit' %}">
+    {% csrf_token %}
+        
+        <label>Username</label><br>
+        <input type="text" name="username"><br><br><br>
+        <label>Password</label><br>
+        <input type="text" name="password"><br><br>
+        <button type="submit" class="btn btn-primary">login</button>
+
+    </form>
+
+</div>
+
+
+
+{% endblock %}
