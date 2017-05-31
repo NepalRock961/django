@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{app_title}}</title>
+    <title>TodoApp</title>
 
     {% load static %}
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -24,46 +24,47 @@
         <div class="header clearfix">
             <nav>
                 <ul class="nav nav-pills pull-right">
-                    <li role="presentation" class="active"><a href="{% url 'index' %}">Home</a></li>
+                    <li role="presentation" class="active">
+                        <a href="{% url 'index' %}">Home</a>
+                    </li>
                     <li role="presentation"><a href="{% url 'about' %}">About</a></li>
+                        <li role="presentation"><a href=" {% url 'contact' %}">Contact</a></li>
                     {% if user.is_authenticated %}
-                    <li role="presentation">
-                        <b>{{user.first_name}}</b>
-                        <a href="{%url 'logout' %}">Logout</a>
-                    </li>
-
+                        <li role="presentation">
+                            <a href="{% url 'create' %}">Add TODO</a>
+                        </li>
+                        <li role="presentation">
+                            <b>{{user.first_name}} {{user.last_name}}</b>
+                            <a href="{% url 'logout' %}">Logout</a>
+                        </li>
                     {% else %}
-                    <li role="presentation">
-                        <a href="{% url 'login' %}">Login</a>
-                    </li>
+                        <li role="presentation">
+                            <a href="{% url 'login' %}">Login</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="{% url 'signup' %}">Sign Up</a>
+                        </li>
+
+
                     {% endif %}
-                    
-                    <li role="presentation"><a href=" {% url 'contact' %}">Contact</a></li>
-
-                     <li role="presentation"><a href="{% url 'signup' %}">signup</a></li>
-
                 </ul>
             </nav>
-            <h3 class="text-muted">TodoApp</h3>
+            <h3 class="text-muted">
+                <a href="{% url 'index' %}">TodoApp</a>
+            </h3>
         </div>
-
-        
         <section id="content">
             {% block content %}{% endblock %}
         </section>
-
-        
         <footer class="footer">
             <p>&copy; 2016 Company, Inc.</p>
         </footer>
 
-</div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-<script src="{% static 'todos/js/todo.js' %}"></script>
-<script src="{% static 'axios.min.js' %}"></script>
+    </div>
+    <!-- /container -->
+    <script src="{% static 'jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'axios.min.js' %}"></script>
     <script src="{% static 'todos/js/todo.js' %}"></script>
-                
 </body>
 
 </html>

@@ -1,15 +1,12 @@
 {% extends 'base.html' %}
 {% block content%}
-
-    <h3>
-      {% if form_type == 'create' %}
+<h3>
+    {% if form_type == 'create' %}
         Add Todo
-      {% elif form_type == 'edit' %}
+    {% elif form_type == 'edit' %}
         Edit Todo
-      
-      {% endif %}
-    </h3>
-  
+    {% endif %}
+</h3>
 {% include 'messages.html' %}
 <div class="todo-form">
     <form method="post" action="{% url 'save' %}">

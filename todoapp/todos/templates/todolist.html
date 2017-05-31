@@ -1,0 +1,46 @@
+{% if user.is_authenticated %}
+<div class="filter">
+    <strong>Filter By:</strong>
+
+    <a href="{% url 'index' %}?filter=all" 
+        class="{% if filter == 'all' %}active{% endif %}">All</a> |
+    <a href="{% url 'index' %}?filter=completed"
+        class="{% if filter == 'completed' %}active{% endif %}">Completed</a> |
+    <a href="{% url 'index' %}?filter=pending"
+        class="{% if filter == 'pending' %}active{% endif %} " >Pending</a>
+</div>
+<div class="row marketing">
+    <div class="todolist list-group">
+        <ul class="list-unstyled">
+            {% if not items %}
+                <div class="alert alert-warning">
+                    <p>No items in the list.</p>
+                </div>
+            {% else %}
+                {% for item in items %}
+                <li class="list-group-item {% if item.completed %}completed{% endif %}">
+                    <div class="completed-check">
+                        <input
+                            type="checkbox" {% if item.completed %}checked{% endif %}
+                            data-id="{{item.id}}" class="todo-complete-check"
+                        />
+                    </div>
+                    <div class="todo-title">
+                        <div class="todo-actions">
+                            <a href="{% url 'edit' item.id %}"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+    <a href="{% url 'delete' item.id %}">
+                                <span class="glyphicon glyphicon-remove"></span> Remove
+                            </a>
+</div>
+<h4 class="list-group-item-heading">{{item.title}}</h4>
+</div>
+</li>
+{% endfor %} {% endif %}
+</ul>
+</div>
+</div>
+{% else %}
+<div class="jumbotron">
+    <p>You need to <a href="{% url 'login' %}">login</a> first to view the todolist.</p>
+</div>
+{% endif %}

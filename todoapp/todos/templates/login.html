@@ -1,21 +1,20 @@
 {% extends 'base.html' %}
-{% block content %}
-
+{% block content%}
+<h3>Login</h3>
 {% include 'messages.html' %}
-<div>   
-    <form method="post" action="{% url 'submit' %}">
-    {% csrf_token %}
-        
-        <label>Username</label><br>
-        <input type="text" name="username"><br><br><br>
-        <label>Password</label><br>
-        <input type="text" name="password"><br><br>
-        <button type="submit" class="btn btn-primary">login</button>
+<div class="todo-form">
+    <form method="post" action="{% url 'authenticate' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required />
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required />
+        </div>
 
+        <button type="submit" class="btn btn-primary">Login</button>
     </form>
-
 </div>
-
-
-
 {% endblock %}

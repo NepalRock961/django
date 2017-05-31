@@ -1,22 +1,4 @@
-{% extends 'base.html' %}
-{% block content%}
+{% extends 'base.html' %} {% block content%}
 {% include 'messages.html' %}
- {%  if user.is_authenticated  %}
-
-
-		<div class="jumbotron">
-            <h1>TodoApp</h1>
-            <p class="lead">Just a demo todo app we're trying to create.</p>
-            <p>
-                <a class="btn btn-lg btn-success" href="{% url 'create' %}" role="button">Add TODO</a>
-            </p>
-        </div>
-
-        {% include 'list.html' %}
-
-    {% else%}
-        <p><b>you need to <a href="{% url 'login' %}">Login</a> First to view list</b></p>
-    {% endif %}
-        
-    {% endblock %}
-
+{% include 'todolist.html' %}
+{% endblock %}
